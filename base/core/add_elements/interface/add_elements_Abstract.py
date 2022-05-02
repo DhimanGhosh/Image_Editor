@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
 
-class ImageProcessingAbstract(ABC):
+class AddElementsAbstract(ABC):
     def __init__(self):
         super().__init__()
 
     @abstractmethod
-    def extract_channel(self, channel: str):
+    def add_black_border(self, thickness: int):
         pass
