@@ -1,1 +1,1 @@
-recursive-include base *
+recursive-include image_editor *

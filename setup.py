@@ -20,11 +20,13 @@ setup(
     author_email=AUTHOR_EMAIL,
     description=DESCRIPTION,
     packages=[
-        'base',
-        'base.gui',
-        'base.core',
-        'base.core.image_processing',
-        'base.utils'
+        'image_editor',
+        'image_editor.assets',
+        'image_editor.configuration',
+        'image_editor.core',
+        'image_editor.core.image_processing',
+        'image_editor.gui',
+        'image_editor.utils'
     ],
     include_package_data=True,
     install_requires=PACKAGES,
