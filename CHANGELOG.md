@@ -10,5 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [CHANGELOG] Configuration for changelog.md [Patch]
 - [README] README file for this project [Patch]
-- [base]-[core]-[image_processing]-[interface]-[Image_Processing_Abstract] Interface for Image Processing [Major]
-- [base]-[core]-[image_processing]-[Image_Processing] Implemented extract_channel and add_black_border [Major]
+- [requirements] Added package requirements [Patch]
+- [base]-[core]-[image_processing]-[Image_Processing] Implemented extract_channel [Major]
+- [base]-[core]-[add_elements]-[add_layers] Added support to add black colour border on all 4 sides [Major]
