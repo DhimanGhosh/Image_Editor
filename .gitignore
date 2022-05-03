@@ -1,2 +1,5 @@
 #idea folder
 .idea/
+.build/
+.dist/
+.Image_Editor.egg-info/
