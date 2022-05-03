@@ -1,5 +1,5 @@
-from base.core.image_processing.Image_Processing import ImageProcessing
-from base.core.add_elements.add_layers import AddLayers
+from image_editor.core.image_processing.Image_Processing import ImageProcessing
+from image_editor.core.add_elements.add_layers import AddLayers
 from matplotlib import pyplot as plt
 import numpy as np
 

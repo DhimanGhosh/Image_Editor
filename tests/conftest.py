@@ -1,5 +1,5 @@
 import pytest
-from base.assets.get_assets import Resources
+from image_editor.assets.get_assets import Resources
 
 
 @pytest.fixture(scope="session", autouse=True)
