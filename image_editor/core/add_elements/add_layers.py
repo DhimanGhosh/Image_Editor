@@ -1,16 +1,17 @@
 from abc import ABC
 from image_editor.core.add_elements.interface.add_elements_Abstract import AddElementsAbstract
 from image_editor.assets.get_assets import Resources
+from image_editor.utils.convert_image import image_to_numpy_array
 import numpy as np
 from matplotlib import pyplot as plt
 from PIL import Image, ImageFont, ImageDraw
 
 
 class AddLayers(AddElementsAbstract, ABC):
-    def __init__(self, img: np.ndarray):
+    def __init__(self, img: str):
         super().__init__()
-        self.img = img
-        self.image_height, self.image_width, self.image_channels = img.shape
+        self.img = image_to_numpy_array(img)
+        self.image_height, self.image_width, self.image_channels = self.img.shape
         self.res = Resources()
 
     def add_black_border(self, thickness=1) -> np.ndarray:
