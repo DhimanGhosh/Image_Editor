@@ -10,5 +10,5 @@ class AddElementsAbstract(ABC):
         pass
 
     @abstractmethod
-    def add_text_on_image(self, text: str, start_pos: tuple, end_pos: tuple):
+    def add_text_on_image(self, title_text: str, start_pos: tuple, font_size: int, font_color: tuple):
         pass
