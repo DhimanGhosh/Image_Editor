@@ -1,5 +1,14 @@
 #idea folder
 .idea/
-.build/
-.dist/
-.Image_Editor.egg-info/
+
+# Build Folders
+build/
+dist/
+Image_Editor.egg-info/
+
+# pycache
+.pytest_cache
+*/__pycache__/*
+
+# env
+env/
