@@ -9,6 +9,3 @@ Image_Editor.egg-info/
 # pycache
 .pytest_cache
 */__pycache__/*
-
-# env
-env/
