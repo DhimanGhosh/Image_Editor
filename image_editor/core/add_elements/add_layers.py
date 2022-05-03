@@ -3,13 +3,13 @@ from image_editor.core.add_elements.interface.add_elements_Abstract import AddEl
 from image_editor.assets.get_assets import Resources
 from image_editor.utils.convert_image import image_to_numpy_array
 import numpy as np
-from matplotlib import pyplot as plt
 from PIL import Image, ImageFont, ImageDraw
 
 
 class AddLayers(AddElementsAbstract, ABC):
     def __init__(self, img: str):
         super().__init__()
+        self.img_path = img
         self.img = image_to_numpy_array(img)
         self.image_height, self.image_width, self.image_channels = self.img.shape
         self.res = Resources()
@@ -26,15 +26,18 @@ class AddLayers(AddElementsAbstract, ABC):
         new_img = np.hstack((black_T, new_img, black_T))
         return new_img
 
-    def add_text_on_image(self, text: str, start_pos: tuple, end_pos: tuple) -> np.ndarray:
+    def add_text_on_image(self, title_text: str, start_pos: tuple, font_size: int, font_color: tuple) -> str:
         """
         This method adds a specific text at a position of the image
-        :param text: text to right on the image
+        :param title_text: text to right on the image
         :param start_pos: (x, y) position from where to start writing
-        :param end_pos: (x, y) position to where to stop writing
-        :return: numpy ndarray of the added border of the image
+        :param font_size: font size of the title text
+        :param font_color: **tuple** with RGB color values (R, G, B)
+        :return: edited image path
         """
-        image = plt.imread(self.img)
-        image = Image.fromarray(np.uint8(image)).convert('RGB')
-        title_font = ImageFont.truetype('playfair/playfair-font.ttf', 200)
-        pass
+        image = Image.open(self.img_path)
+        title_font = ImageFont.truetype(self.res.playfair_font, font_size)
+        image_editable = ImageDraw.Draw(image)
+        image_editable.text(start_pos, title_text, font_color, font=title_font)
+        image.save('text_on_image.jpg')
+        return self.res.store_in_res('text_on_image.jpg')
