@@ -24,6 +24,7 @@ setup(
         'image_editor.assets',
         'image_editor.configuration',
         'image_editor.core',
+        'image_editor.core.add_elements',
         'image_editor.core.image_processing',
         'image_editor.gui',
         'image_editor.utils'
