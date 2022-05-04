@@ -62,8 +62,6 @@ class ImageProcessing(ImageProcessingAbstract, ABC):
             new_img = transparent_background(new_img)
             file_extension = 'png'
         new_img_path = numpy_array_to_image(image=new_img, image_path=self.img_path, file_extension=file_extension)
-        if glob('temp.png'):
-            os.remove('temp.png')
         return new_img_path
 
     def __create_circular_mask(self, height, width, center=None, radius=None):
