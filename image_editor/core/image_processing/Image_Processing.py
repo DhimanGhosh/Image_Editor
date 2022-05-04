@@ -1,8 +1,7 @@
 from abc import ABC
 from image_editor.core.image_processing.interface.Image_Processing_Abstract import ImageProcessingAbstract
-from image_editor.utils.convert_image import image_to_numpy_array, create_new_image_file, numpy_array_to_image
+from image_editor.utils.convert_image import image_to_numpy_array, numpy_array_to_image
 import numpy as np
-from PIL import Image
 
 
 class ImageProcessing(ImageProcessingAbstract, ABC):
