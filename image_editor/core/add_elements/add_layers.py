@@ -1,7 +1,7 @@
 from abc import ABC
 from image_editor.core.add_elements.interface.add_elements_Abstract import AddElementsAbstract
 from image_editor.assets.get_assets import Resources
-from image_editor.utils.convert_image import image_to_numpy_array
+from image_editor.utils.convert_image import image_to_numpy_array, create_new_image_file
 import numpy as np
 import os
 from PIL import Image, ImageFont, ImageDraw
@@ -41,9 +41,6 @@ class AddLayers(AddElementsAbstract, ABC):
         image_editable = ImageDraw.Draw(image)
         image_editable.text(start_pos, title_text, font_color, font=title_font)
 
-        input_file_name = self.img_path.split(os.sep)[-1]
-        file_extension = input_file_name.split('.')[-1]
-        new_file_name = input_file_name.split('.')[0] + '_1.' + file_extension
-
+        new_file_name = create_new_image_file(self.img_path)
         image.save(new_file_name)
         return new_file_name

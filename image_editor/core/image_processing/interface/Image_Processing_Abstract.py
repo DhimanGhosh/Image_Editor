@@ -8,3 +8,7 @@ class ImageProcessingAbstract(ABC):
     @abstractmethod
     def extract_channel(self, channel: str):
         pass
+
+    @abstractmethod
+    def crop_image(self, **kwargs):
+        pass
