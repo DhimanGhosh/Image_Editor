@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [image_editor]-[core]-[add_elements]-[add_layers] Added support to add text on image [Major]
 - [image_editor]-[utils]-[extract_text_from_image] extract_text_from_image function extracts text from an image [Patch]
 - [image_editor]-[core]-[image_processing]-[Image_Processing] Implemented Image crop feature [Major]
+- [image_editor]-[core]-[image_processing]-[Image_Processing] Added support to crop image circular shape with transparent background [Major]
+- [image_editor]-[utils]-[convert_image] transparent_background function removes black background from image and converts to png format [Minor]
 
 ### Changed - (unreleased)
 - [image_editor]-[assets]-[get_assets] store_in_res function now will return the new file path after stored in resource folder [Minor]
