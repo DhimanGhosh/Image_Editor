@@ -3,7 +3,6 @@ from image_editor.core.add_elements.interface.add_elements_Abstract import AddEl
 from image_editor.assets.get_assets import Resources
 from image_editor.utils.convert_image import image_to_numpy_array, create_new_image_file
 import numpy as np
-import os
 from PIL import Image, ImageFont, ImageDraw
 
 

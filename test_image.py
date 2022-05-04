@@ -57,3 +57,11 @@ def test_crop_image_1_1():
     img1 = process.crop_image(aspect_ratio='1:1', dimension=shift)
     img1_shape = (width, width, channels) if width < height else (height, height, channels)
     assert plt.imread(img1).shape == img1_shape
+
+
+def test_crop_image_circle():
+    process = ImageProcessing(img)
+    height, width, channels = plt.imread(img).shape
+    center = (width // 2, height // 2)
+    img1 = process.crop_image(aspect_ratio='circle', center=center)
+    assert plt.imread(img1).shape == tuple((np.array(plt.imread(img).shape) + np.array((0, 0, 1))))
