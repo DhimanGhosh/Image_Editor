@@ -1,2 +1,2 @@
 # Image_Editor
- Simple GUI Based Image Editor
+ Simple CLI Based Image Editor
