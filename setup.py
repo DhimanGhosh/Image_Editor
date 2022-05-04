@@ -27,7 +27,8 @@ setup(
         'image_editor.core.add_elements',
         'image_editor.core.image_processing',
         'image_editor.gui',
-        'image_editor.utils'
+        'image_editor.utils',
+        'image_editor.test',
     ],
     include_package_data=True,
     install_requires=PACKAGES,
