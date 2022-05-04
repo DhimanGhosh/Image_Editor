@@ -8,9 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added - (unreleased)
 - [image_editor]-[core]-[add_elements]-[add_layers] Added support to add text on image [Major]
 - [image_editor]-[utils]-[extract_text_from_image] extract_text_from_image function extracts text from an image [Patch]
+- [image_editor]-[core]-[image_processing]-[Image_Processing] Implemented Image crop feature [Major]
 
 ### Changed - (unreleased)
 - [image_editor]-[assets]-[get_assets] store_in_res function now will return the new file path after stored in resource folder [Minor]
+- [image_editor]-[core]-[add_elements]-[add_layers] Implemented create_new_image_file utility function [Patch]
 
 ### Removed - (unreleased)
 
