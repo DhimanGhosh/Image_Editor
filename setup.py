@@ -5,7 +5,7 @@ with open('version.txt', 'r') as file_handler:
 
 with open('requirements.txt', 'r') as f:
     requires = f.readlines()
-PACKAGES = [pkg[:-1] for pkg in requires if 'Sphinx' not in pkg]
+PACKAGES = [pkg.split('\n')[0] for pkg in requires if pkg.split('==')[0] not in ['Sphinx', 'setuptools']]
 
 PROJECT = 'Image_Editor'
 DESCRIPTION = 'Simple GUI based image editor'
