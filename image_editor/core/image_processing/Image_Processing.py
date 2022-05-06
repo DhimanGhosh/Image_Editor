@@ -1,9 +1,8 @@
 from abc import ABC
 from image_editor.core.image_processing.interface.Image_Processing_Abstract import ImageProcessingAbstract
-from image_editor.utils.convert_image import image_to_numpy_array, numpy_array_to_image, transparent_background
-from glob import glob
+from image_editor.utils.convert_image import image_to_numpy_array, numpy_array_to_image, transparent_background, cv_to_image
 import numpy as np
-import os
+import cv2 as cv
 
 
 class ImageProcessing(ImageProcessingAbstract, ABC):
@@ -13,11 +12,11 @@ class ImageProcessing(ImageProcessingAbstract, ABC):
         self.img = image_to_numpy_array(img)
         self.image_height, self.image_width, self.image_channels = self.img.shape
 
-    def extract_channel(self, channel) -> np.ndarray:
+    def extract_channel(self, channel) -> str:
         """
         This method extracts a specific color channel
         :param channel: 'R' / 'G' / 'B'
-        :return: numpy ndarray of the extracted channel of the image
+        :return: path for extracted channel of the image
         """
         new_img = self.img.copy()
         if channel.lower() == 'r':
@@ -26,7 +25,7 @@ class ImageProcessing(ImageProcessingAbstract, ABC):
             new_img[:, :, [0, 2]] = 0
         if channel.lower() == 'b':
             new_img[:, :, [0, 1]] = 0
-        return new_img
+        return numpy_array_to_image(image_array=new_img, image_path=self.img_path)
 
     def crop_image(self, **kwargs) -> str:
         """
@@ -61,7 +60,7 @@ class ImageProcessing(ImageProcessingAbstract, ABC):
             new_img[~mask] = 0
             new_img = transparent_background(new_img)
             file_extension = 'png'
-        new_img_path = numpy_array_to_image(image=new_img, image_path=self.img_path, file_extension=file_extension)
+        new_img_path = numpy_array_to_image(image_array=new_img, image_path=self.img_path, file_extension=file_extension)
         return new_img_path
 
     def __create_circular_mask(self, height, width, center=None, radius=None):
@@ -75,3 +74,20 @@ class ImageProcessing(ImageProcessingAbstract, ABC):
 
         mask = dist_from_center <= radius
         return mask
+
+    def scale_image(self, **kwargs) -> str:
+        """
+        This method up scales / down scales an image by dimensions provided
+        :param kwargs: arguments to scale the image to some dimension
+        :return: scaled image path
+        """
+        img = cv.imread(self.img_path, cv.IMREAD_COLOR)
+        scale_amount = abs(float(kwargs.get('amount', '1')))
+
+        if scale_amount >= 1:  # upscale
+            img = cv.resize(img, None, fx=scale_amount, fy=scale_amount, interpolation=cv.INTER_CUBIC)
+
+        elif scale_amount > 0:  # downscale
+            img = cv.resize(img, None, fx=scale_amount, fy=scale_amount, interpolation=cv.INTER_AREA)
+
+        return cv_to_image(image_cv=img, image_path=self.img_path)

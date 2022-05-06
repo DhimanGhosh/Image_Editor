@@ -11,4 +11,7 @@ Image_Editor.egg-info/
 */__pycache__/*
 *.pyc
 
+# virtualenv
 env/
+venv/
+whlenv/

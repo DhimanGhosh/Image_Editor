@@ -11,10 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [image_editor]-[core]-[image_processing]-[Image_Processing] Implemented Image crop feature [Major]
 - [image_editor]-[core]-[image_processing]-[Image_Processing] Added support to crop image circular shape with transparent background [Major]
 - [image_editor]-[utils]-[convert_image] transparent_background function removes black background from image and converts to png format [Minor]
+- [image_editor]-[utils]-[file_processing] get the size of a file in bytes [Patch]
+- [requirements] Added opencv-python==4.5.5.64 module [Patch]
+- [image_editor]-[utils]-[convert_image] cv_to_image function converts cv image object to an image file [Patch]
+- [image_editor]-[core]-[image_processing]-[Image_Processing] scale_image function helps in up-scaling / down-scaling the image [Major]
 
 ### Changed - (unreleased)
 - [image_editor]-[assets]-[get_assets] store_in_res function now will return the new file path after stored in resource folder [Minor]
 - [image_editor]-[core]-[add_elements]-[add_layers] Implemented create_new_image_file utility function [Patch]
+- [image_editor]-[utils]-[convert_image] create_new_image_file function saves file with incremental number [Minor]
+- [image_editor]-[core]-[image_processing]-[Image_Processing] extract_channel function now returns image path instead of ndarray [Minor]
 
 ### Removed - (unreleased)
 

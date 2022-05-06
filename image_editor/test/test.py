@@ -2,6 +2,8 @@ from image_editor.core.image_processing.Image_Processing import ImageProcessing
 from image_editor.core.add_elements.add_layers import AddLayers
 from image_editor.assets.get_assets import Resources
 from image_editor.utils.extract_text_from_image import extract_text_from_image
+from image_editor.utils.convert_image import image_to_numpy_array
+from image_editor.utils.file_processing import get_file_size
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -13,8 +15,9 @@ def test_extract_color_channel():
     process = ImageProcessing(img)
     channel = 'R'
     img1 = process.extract_channel(channel)
+    img1 = image_to_numpy_array(img1)
     new_img = img1[:, :, [1, 2]]
-    blank_image_with_red_channel_extracted = np.zeros(img.shape - np.array((0, 0, 1)))
+    blank_image_with_red_channel_extracted = np.zeros(image_to_numpy_array(img).shape - np.array((0, 0, 1)))
     assert np.array_equal(new_img, blank_image_with_red_channel_extracted)
 
 
@@ -65,3 +68,15 @@ def test_crop_image_circle():
     center = (width // 2, height // 2)
     img1 = process.crop_image(aspect_ratio='circle', center=center)
     assert plt.imread(img1).shape == tuple((np.array(plt.imread(img).shape) + np.array((0, 0, 1))))
+
+
+def test_upscale():
+    process = ImageProcessing(img)
+    img1 = process.scale_image(amount=2)
+    assert get_file_size(img1) > get_file_size(img)
+
+
+def test_downscale():
+    process = ImageProcessing(img)
+    img1 = process.scale_image(amount=0.5)
+    assert get_file_size(img1) < get_file_size(img)

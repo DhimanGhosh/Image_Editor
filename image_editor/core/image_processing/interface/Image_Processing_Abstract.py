@@ -12,3 +12,7 @@ class ImageProcessingAbstract(ABC):
     @abstractmethod
     def crop_image(self, **kwargs):
         pass
+
+    @abstractmethod
+    def scale_image(self, **kwargs):
+        pass
