@@ -1,3 +1,4 @@
+import image_editor as ie
 from image_editor.core.image_processing.Image_Processing import ImageProcessing
 from image_editor.core.add_elements.add_layers import AddLayers
 from image_editor.assets.get_assets import Resources
@@ -13,7 +14,7 @@ img = res.sample_image
 
 def test_extract_color_channel():
     process = ImageProcessing(img)
-    channel = 'R'
+    channel = ie.RED_CHANNEL
     img1 = process.extract_channel(channel)
     img1 = image_to_numpy_array(img1)
     new_img = img1[:, :, [1, 2]]
@@ -47,7 +48,7 @@ def test_crop_image_custom():
     top = 200
     right = 1000
     bottom = 500
-    img1 = process.crop_image(aspect_ratio='custom', dimension=(left, top, right, bottom))
+    img1 = process.crop_image(aspect_ratio=ie.CROP_CUSTOM, dimension=(left, top, right, bottom))
     height1 = height - (top + bottom)
     width1 = width - (left + right)
     assert plt.imread(img1).shape == (height1, width1, channels)
@@ -57,7 +58,7 @@ def test_crop_image_1_1():
     process = ImageProcessing(img)
     height, width, channels = plt.imread(img).shape
     shift = 500
-    img1 = process.crop_image(aspect_ratio='1:1', dimension=shift)
+    img1 = process.crop_image(aspect_ratio=ie.CROP_1_1, shift=shift)
     img1_shape = (width, width, channels) if width < height else (height, height, channels)
     assert plt.imread(img1).shape == img1_shape
 
@@ -66,7 +67,7 @@ def test_crop_image_circle():
     process = ImageProcessing(img)
     height, width, channels = plt.imread(img).shape
     center = (width // 2, height // 2)
-    img1 = process.crop_image(aspect_ratio='circle', center=center)
+    img1 = process.crop_image(aspect_ratio=ie.CROP_CIRCLE, center=center)
     assert plt.imread(img1).shape == tuple((np.array(plt.imread(img).shape) + np.array((0, 0, 1))))
 
 
@@ -80,3 +81,21 @@ def test_downscale():
     process = ImageProcessing(img)
     img1 = process.scale_image(amount=0.5)
     assert get_file_size(img1) < get_file_size(img)
+
+
+def test_flip_vertical():
+    process = ImageProcessing(img)
+    img1 = process.flip_image(direction=ie.FLIP_VERTICAL)
+    assert np.all(np.flip(plt.imread(img), axis=0) == plt.imread(img1))
+
+
+def test_flip_horizontal():
+    process = ImageProcessing(img)
+    img1 = process.flip_image(direction=ie.FLIP_HORIZONTAL)
+    assert np.all(np.flip(plt.imread(img), axis=1) == plt.imread(img1))
+
+
+def test_flip_vertical_horizontal():
+    process = ImageProcessing(img)
+    img1 = process.flip_image(direction=ie.FLIP_VERTICAL_HORIZONTAL)
+    assert np.all(np.flip(plt.imread(img), axis=2) == plt.imread(img1))

@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [requirements] Added opencv-python==4.5.5.64 module [Patch]
 - [image_editor]-[utils]-[convert_image] cv_to_image function converts cv image object to an image file [Patch]
 - [image_editor]-[core]-[image_processing]-[Image_Processing] scale_image function helps in up-scaling / down-scaling the image [Major]
+- [image_editor]-[core]-[image_processing]-[Image_Processing] flip_image function helps in flipping the image horizontally / vertically [Major]
+- [image_editor]-[init] added ENUMs [Minor]
 
 ### Changed - (unreleased)
 - [image_editor]-[assets]-[get_assets] store_in_res function now will return the new file path after stored in resource folder [Minor]
